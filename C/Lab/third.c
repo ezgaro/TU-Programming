@@ -37,18 +37,36 @@ void isEven(int a) {
 }
 
 void recreateNum(int n) {
-  int binaryNum[32];
-    int i = 0;
-    while (n > 0) {
-        binaryNum[i] = n % 2;
-        n = n / 2;
-        i++;
-    }
+  if (n == 0) {
+    printf("0");
+    return;
+}
 
-    for (int j = i - 1; j >= 0; j--) {
-        printf("%d", binaryNum[j]);
+int leadingBit = 0;
+for (int i = 31; i >= 0; i--) {
+    if (n & (1 << i)) {
+        leadingBit = 1;
     }
-    printf("\n");
+    if (leadingBit)
+    {
+        printf("%d", (n & (1 << i)) ? 1 : 0);
+    }
+}
+printf("\n");
+}
+
+int main()
+{
+  int num;
+
+  printf("Enter a decimal number: ");
+  scanf("%d", &num);
+
+  printf("Binary representation: ");
+  decimalToBinary(num);
+
+
+  return 0;
 }
 
 int main() {
